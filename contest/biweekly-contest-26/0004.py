@@ -5,9 +5,8 @@
 # @File    : 0004.py
 # @Desc    : 说明
 
-from typing import List
-from collections import defaultdict, Counter
 
+from collections import defaultdict
 from typing import List
 
 
