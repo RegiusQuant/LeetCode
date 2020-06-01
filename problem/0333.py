@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/4/30 下午1:35
+# @Time    : 2020/6/1 下午8:14
 # @Author  : RegiusQuant <315135833@qq.com>
 # @Project : leetcode
-# @File    : 0001.py
+# @File    : 0333.py
 # @Desc    : 说明
 
 # Definition for a binary tree node.
@@ -34,4 +34,3 @@ class Solution:
                 currMax = max(leftMax, rightMax, root.val)
                 return True, currMin, currMax, leftNum + rightNum + 1
         return False, -1, -1, -1
-
