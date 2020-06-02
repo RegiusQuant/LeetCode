@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/4/30 下午2:22
+# @Time    : 2020/6/2 上午10:10
 # @Author  : RegiusQuant <315135833@qq.com>
 # @Project : leetcode
-# @File    : 0003.py
+# @File    : 0223.py
 # @Desc    : 说明
-
 
 class Solution:
     def computeArea(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int) -> int:
@@ -15,8 +14,3 @@ class Solution:
             return total - x * y
         else:
             return total
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    print(solution.computeArea(-3, 0, 3, 4, 0, -1, 9, 2))

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/4/30 下午1:40
+# @Time    : 2020/6/2 上午10:09
 # @Author  : RegiusQuant <315135833@qq.com>
 # @Project : leetcode
-# @File    : 0002.py
+# @File    : 0204.py
 # @Desc    : 说明
 
 class Solution:
@@ -21,9 +21,3 @@ class Solution:
                     break
                 valid[i * j] = False
         return sum(valid)
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    print(solution.countPrimes(10))
-    print(solution.countPrimes(499979))
