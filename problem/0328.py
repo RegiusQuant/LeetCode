@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/4/30 下午2:22
+# @Time    : 2020/6/3 上午10:18
 # @Author  : RegiusQuant <315135833@qq.com>
 # @Project : leetcode
-# @File    : 0003.py
+# @File    : 0328.py
 # @Desc    : 说明
 
 # Definition for singly-linked list.

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/4/30 下午1:40
+# @Time    : 2020/6/3 上午10:15
 # @Author  : RegiusQuant <315135833@qq.com>
 # @Project : leetcode
-# @File    : 0002.py
+# @File    : 0139.py
 # @Desc    : 说明
 
 from typing import List
@@ -28,6 +28,5 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    print(solution.wordBreak('leetcode', ["leet", "code"]))
-    print(solution.wordBreak('applepenapple', ["apple", "pen"]))
-    print(solution.wordBreak('catsandog', ["cats", "dog", "sand", "and", "cat"]))
+    print(solution.canFinish(2, [[1, 0]]))
+    print(solution.canFinish(2, [[1, 0], [0, 1]]))
