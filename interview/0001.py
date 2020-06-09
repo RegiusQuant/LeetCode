@@ -12,33 +12,24 @@ class ListNode:
         self.next = None
 
 
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
-
-
 class Solution:
-    def sortedListToBST(self, head: ListNode) -> TreeNode:
-        if not head:
-            return None
-        if not head.next:
-            return TreeNode(head.val)
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        temp = ListNode(0)
+        temp.next = head
+        head = temp
 
-        prev, slow, fast = None, head, head
-        while fast and fast.next:
-            fast = fast.next.next
-            prev = slow
+        slow, fast = head, head
+        while n > 0:
+            fast = fast.next
+            n -= 1
+        while fast.next:
+            fast = fast.next
             slow = slow.next
-
-        node = TreeNode(slow.val)
-        prev.next = None
-        node.left = self.sortedListToBST(head)
-        node.right = self.sortedListToBST(slow.next)
-        return node
+        slow.next = slow.next.next
+        return head.next
 
 
 if __name__ == '__main__':
     solution = Solution()
+    head = ListNode(1)
+    print(solution.removeNthFromEnd(head, 1))
