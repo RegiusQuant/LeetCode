@@ -7,47 +7,44 @@
 
 from typing import List
 from collections import defaultdict, deque
-from queue import PriorityQueue
+from itertools import combinations
+from functools import lru_cache
 
 
 class Solution:
     def minNumberOfSemesters(self, n: int, dependencies: List[List[int]], k: int) -> int:
         edges = defaultdict(list)
-        degs = [0] * n
-        for u, v in dependencies:
-            edges[u - 1].append(v - 1)
-            degs[v - 1] += 1
+        for x, y in dependencies:
+            edges[x - 1].append(y - 1)
 
-        def findMaxDepth(u):
-            depth, q = 0, deque([u])
-            while q:
-                for _ in range(len(q)):
-                    u = q.popleft()
+        @lru_cache(None)
+        def dfs(state):
+            if state == (1 << n) - 1:
+                return 0
+
+            degs = [0] * n
+            for u in range(n):
+                if (1 << u) & state == 0:
                     for v in edges[u]:
-                        q.append(v)
-                depth += 1
-            return depth
+                        degs[v] += 1
+            # print(state)
+            nodes = [u for u in range(n) if degs[u] == 0 and state & (1 << u) == 0]
+            # print(nodes)
 
-        depth = [findMaxDepth(u) for u in range(n)]
+            if len(nodes) <= k:
+                for u in nodes:
+                    state |= (1 << u)
+                return 1 + dfs(state)
+            else:
+                result = float('inf')
+                for c in combinations(nodes, k):
+                    newState = state
+                    for u in c:
+                        newState |= (1 << u)
+                        result = min(result, 1 + dfs(newState))
+                return result
 
-        queue = PriorityQueue()
-        for i in range(n):
-            if degs[i] == 0:
-                queue.put((-depth[i], i))
-
-        result = 0
-        while queue.qsize() != 0:
-            temp = []
-            for _ in range(min(k, queue.qsize())):
-                u = queue.get()[1]
-                for v in edges[u]:
-                    degs[v] -= 1
-                    if degs[v] == 0:
-                        temp.append(v)
-            for v in temp:
-                queue.put((-depth[v], v))
-            result += 1
-        return result
+        return dfs(0)
 
 
 if __name__ == '__main__':
