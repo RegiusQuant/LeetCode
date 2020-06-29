@@ -13,21 +13,20 @@ class Solution:
         if len(nums) == 1:
             return nums[0]
 
-        left, right = 0, len(nums) - 1
-        mid = (left + right) // 2
-        pivot = nums[mid]
-        nums[mid], nums[right] = nums[right], pivot
+        pivot = nums[len(nums) // 2]
+        left = [x for x in nums if x > pivot]
+        middle = [x for x in nums if x == pivot]
+        right = [x for x in nums if x < pivot]
 
-        pos = left
-        for i in range(left, right):
-            if nums[i] > pivot:
-                nums[pos], nums[i] = nums[i], nums[pos]
-                pos += 1
-        nums[pos], nums[right] = nums[right], nums[pos]
-
-        if k == pos + 1:
-            return nums[pos]
-        elif k < pos + 1:
-            return self.findKthLargest(nums[:pos], k)
+        if k <= len(left):
+            return self.findKthLargest(left, k)
+        elif k > len(left) + len(middle):
+            return self.findKthLargest(right, k - len(left) - len(middle))
         else:
-            return self.findKthLargest(nums[pos + 1:], k - pos - 1)
+            return middle[0]
+
+
+if __name__ == '__main__':
+    solution = Solution()
+    print(solution.findKthLargest([3, 2, 1, 5, 6, 4], 2))
+    print(solution.findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4))
