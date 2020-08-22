@@ -8,5 +8,9 @@
     "python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
     "python.formatting.provider": "yapf",
-    "python.formatting.yapfArgs": ["--style", "{column_limit: 120}"],
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{column_limit: 120}"
+    ],
+    "python.pythonPath": "/home/regius/miniconda3/envs/regius/bin/python",
 }
